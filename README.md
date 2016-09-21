@@ -6,7 +6,7 @@ Repo with sourcecode of https://sourceforge.net/projects/npp-plugins/files/NppEx
 Build Status
 ------------
 
-AppVeyor `VS2013` and `VS2015`  [![Build status]([![Build status](https://ci.appveyor.com/api/projects/status/hxhqdk46mjgh8d33?svg=true)](https://ci.appveyor.com/project/chcg/npp-exportplugin)
+AppVeyor `VS2013` and `VS2015`  [![Build status](https://ci.appveyor.com/api/projects/status/hxhqdk46mjgh8d33?svg=true)](https://ci.appveyor.com/project/chcg/npp-exportplugin)
 
 
 Description

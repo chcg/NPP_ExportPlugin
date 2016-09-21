@@ -1,27 +1,27 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NppExport", "NppExport.vcproj", "{09A365CA-B3D6-4878-A2BD-286EA81265B9}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NppExport", "NppExport.vcxproj", "{09A365CA-B3D6-4878-A2BD-286EA81265B9}"
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Debug Unicode = Debug Unicode
-		Release = Release
-		Release Unicode = Release Unicode
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Unicode|Win32 = Debug Unicode|Win32
+		Debug|Win32 = Debug|Win32
+		Release Unicode|Win32 = Release Unicode|Win32
+		Release|Win32 = Release|Win32
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Debug.ActiveCfg = Debug|Win32
-		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Debug.Build.0 = Debug|Win32
-		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Debug Unicode.ActiveCfg = Debug Unicode|Win32
-		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Debug Unicode.Build.0 = Debug Unicode|Win32
-		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Release.ActiveCfg = Release|Win32
-		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Release.Build.0 = Release|Win32
-		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Release Unicode.ActiveCfg = Release Unicode|Win32
-		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Release Unicode.Build.0 = Release Unicode|Win32
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Debug Unicode|Win32.ActiveCfg = Debug Unicode|Win32
+		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Debug Unicode|Win32.Build.0 = Debug Unicode|Win32
+		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Debug|Win32.Build.0 = Debug|Win32
+		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Release Unicode|Win32.ActiveCfg = Release Unicode|Win32
+		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Release Unicode|Win32.Build.0 = Release Unicode|Win32
+		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Release|Win32.ActiveCfg = Release|Win32
+		{09A365CA-B3D6-4878-A2BD-286EA81265B9}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

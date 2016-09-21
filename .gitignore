@@ -13,3 +13,4 @@ vs7project/NppExport.lib
 *.exp
 *.aps
 *.zip
+*.ipch

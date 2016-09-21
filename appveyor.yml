@@ -1,4 +1,4 @@
-version: 4.2.{build}
+version: 0.2.8.{build}
 image: Visual Studio 2015
 
 
@@ -28,11 +28,11 @@ build:
     verbosity: minimal
 
 build_script:
-    - cd c:\projects\NPP_ExportPlugin\vs7project\
+    - cd c:\projects\npp-exportplugin\vs7project\
     - msbuild NppExport.vcxproj /p:configuration="%configuration%" /p:platform="%platform%" /p:PlatformToolset="%PlatformToolset%"
 
 after_build:
-    - cd c:\projects\NPP_ExportPlugin\
+    - cd c:\projects\npp-exportplugin\
     - ps: >-
         $NPP_ExportPluginFileName = "NppExport.$env:PLATFORM.$env:CONFIGURATION.$env:PLATFORMTOOLSET.dll"
 

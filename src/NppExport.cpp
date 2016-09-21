@@ -121,11 +121,11 @@ extern "C" __declspec(dllexport) FuncItem * getFuncsArray(int *nbF) {
 	return funcItem;
 }
 
-extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode) {
+extern "C" __declspec(dllexport) void beNotified(SCNotification *) {
 	return;
 }
 
-extern "C" __declspec(dllexport) LRESULT messageProc(UINT Message, WPARAM wParam, LPARAM lParam) {
+extern "C" __declspec(dllexport) LRESULT messageProc(UINT , WPARAM , LPARAM ) {
 	return TRUE;
 }
 

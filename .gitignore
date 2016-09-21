@@ -1,0 +1,16 @@
+build/
+vs7project/x64/
+vs7project/Debug/
+vs7project/Release/
+UpgradeLog.htm
+vs7project/NppExport.vcxproj.user
+vs7project/NppExport.exp
+vs7project/NppExport.lib
+*.sdf
+*.suo
+*.filters
+*.opensdf
+*.sln
+*.exp
+*.aps
+*.zip

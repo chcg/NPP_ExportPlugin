@@ -1,6 +1,6 @@
 # NPP_Export
 Notepad++ Plugin NppExport
-Repo with sourcecode of https://sourceforge.net/projects/npp-plugins/files/NppExport/
+unofficial repo with sourcecode of https://sourceforge.net/projects/npp-plugins/files/NppExport/
 
 
 Build Status

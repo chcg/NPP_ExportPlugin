@@ -2,9 +2,6 @@ version: 0.2.8.{build}
 image: Visual Studio 2015
 
 
-clone_depth: 1
-
-
 environment:
   matrix:
   - PlatformToolset: v140_xp
@@ -28,27 +25,46 @@ build:
     verbosity: minimal
 
 build_script:
-    - cd c:\projects\npp-exportplugin\vs7project\
+    - cd "%APPVEYOR_BUILD_FOLDER%"\vs7project\
     - msbuild NppExport.vcxproj /p:configuration="%configuration%" /p:platform="%platform%" /p:PlatformToolset="%PlatformToolset%"
 
 after_build:
-    - cd c:\projects\npp-exportplugin\
+    - cd "%APPVEYOR_BUILD_FOLDER%"
     - ps: >-
-        $NPP_ExportPluginFileName = "NppExport.$env:PLATFORM.$env:CONFIGURATION.$env:PLATFORMTOOLSET.dll"
 
-        if ($env:PLATFORM -eq "x64" -and $env:CONFIGURATION -eq "Release") {
-            Push-AppveyorArtifact "vs7project\x64\Release\NppExport.dll" -FileName "$NPP_ExportPluginFileName"
+        if ($env:PLATFORM -eq "x64") {
+            Push-AppveyorArtifact "vs7project\$env:PLATFORM\$env:CONFIGURATION\NppExport.dll" -FileName NppExport.dll
         }
 
-        if ($env:PLATFORM -eq "x64" -and $env:CONFIGURATION -eq "Debug") {
-            Push-AppveyorArtifact "vs7project\x64\Debug\NppExport.dll" -FileName "$NPP_ExportPluginFileName"
+        if ($env:PLATFORM -eq "Win32" ) {
+            Push-AppveyorArtifact "vs7project\$env:CONFIGURATION\NppExport.dll" -FileName NppExport.dll
         }
 
-        if ($env:PLATFORM -eq "Win32" -and $env:CONFIGURATION -eq "Release") {
-            Push-AppveyorArtifact "vs7project\Release\NppExport.dll" -FileName "$NPP_ExportPluginFileName"
+        if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release" -and $env:PLATFORMTOOLSET -eq "v120_xp") {
+            if($env:PLATFORM -eq "x64"){
+            $ZipFileName = "NppExport_$($env:APPVEYOR_REPO_TAG_NAME)_x64.zip"
+            7z a $ZipFileName vs7project\$env:PLATFORM\$env:CONFIGURATION\*.dll
+            }
+            if($env:PLATFORM -eq "Win32"){
+            $ZipFileName = "NppExport_$($env:APPVEYOR_REPO_TAG_NAME)_x86.zip"
+            7z a $ZipFileName vs7project\$env:CONFIGURATION\*.dll
+            }
         }
 
-        if ($env:PLATFORM -eq "Win32" -and $env:CONFIGURATION -eq "Debug") {
-            Push-AppveyorArtifact "vs7project\Debug\NppExport.dll" -FileName "$NPP_ExportPluginFileName"
-        }
+artifacts:
+  - path: NppExport_*.zip
+    name: releases
+
+deploy:
+    provider: GitHub
+    auth_token:
+        secure: PhNXrhw03Z0rJZssX/UYyoIofw669wU1GBy/hGq+WJPCXd7mbxDu6Il32Rx0LBH6
+    artifact: releases
+    draft: false
+    prerelease: false
+    force_update: true
+    on:
+        appveyor_repo_tag: true
+        PlatformToolset: v120_xp
+        configuration: Release
 

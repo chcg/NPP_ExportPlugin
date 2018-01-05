@@ -6,8 +6,8 @@ unofficial repo with sourcecode of https://sourceforge.net/projects/npp-plugins/
 Build Status
 ------------
 
-AppVeyor `VS2013` and `VS2015`  [![Build status](https://ci.appveyor.com/api/projects/status/hxhqdk46mjgh8d33?svg=true)](https://ci.appveyor.com/project/chcg/npp-exportplugin)
-
+- AppVeyor `VS2013` and `VS2015` [![Build status](https://ci.appveyor.com/api/projects/status/github/chcg/npp-exportplugin?svg=true)](https://ci.appveyor.com/project/chcg/npp-exportplugin)
+- Current Version [![GitHub release](https://img.shields.io/github/release/chcg/npp-exportplugin.svg)]()
 
 Description
 ------------

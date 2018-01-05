@@ -18,7 +18,7 @@ bool TXTExporter::exportData(ExportData * ed) {
 	char * buffer = ed->csd->dataBuffer;
 	int currentBufferOffset = 0;
 	
-	int totyalBytesNeeded = 1; 	// Zero terminated
+	int totalBytesNeeded = 1; 	// Zero terminated
 	totalBytesNeeded += ed->csd->nrChars;
 
 	

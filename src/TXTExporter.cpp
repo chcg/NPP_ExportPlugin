@@ -16,10 +16,12 @@ TXTExporter::~TXTExporter(void) {
 bool TXTExporter::exportData(ExportData * ed) {
 	//estimate buffer size needed
 	char * buffer = ed->csd->dataBuffer;
-
-	int totalBytesNeeded = ed->csd->nrChars;
-
 	int currentBufferOffset = 0;
+	
+	int totyalBytesNeeded = 1; 	// Zero terminated
+	totalBytesNeeded += ed->csd->nrChars;
+
+	
 	HGLOBAL hTXTBuffer = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, totalBytesNeeded);
 	char * clipbuffer = (char *)GlobalLock(hTXTBuffer);
 	clipbuffer[0] = 0;

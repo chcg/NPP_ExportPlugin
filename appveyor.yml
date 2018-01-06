@@ -45,11 +45,11 @@ after_build:
         if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release" -and $env:PLATFORMTOOLSET -eq "v140_xp") {
             if($env:PLATFORM_INPUT -eq "x64"){
             $ZipFileName = "NppExport_$($env:APPVEYOR_REPO_TAG_NAME)_x64.zip"
-            7z a $ZipFileName vs7project\$env:PLATFORM_INPUT\$env:CONFIGURATION\*.dll
+            7z a $ZipFileName "$($env:APPVEYOR_BUILD_FOLDER)\vs7project\$env:PLATFORM_INPUT\$env:CONFIGURATION\*.dll"
             }
             if($env:PLATFORM_INPUT -eq "Win32"){
             $ZipFileName = "NppExport_$($env:APPVEYOR_REPO_TAG_NAME)_x86.zip"
-            7z a $ZipFileName vs7project\$env:CONFIGURATION\*.dll
+            7z a $ZipFileName "$($env:APPVEYOR_BUILD_FOLDER)\vs7project\$env:CONFIGURATION\*.dll"
             }
         }
 

@@ -6,7 +6,7 @@ unofficial repo with sourcecode of https://sourceforge.net/projects/npp-plugins/
 Build Status
 ------------
 
-- AppVeyor `VS2013` and `VS2015`  [![Build status](https://ci.appveyor.com/api/projects/status/hxhqdk46mjgh8d33?svg=true)](https://ci.appveyor.com/project/chcg/npp-exportplugin)
+- AppVeyor `VS2015` and `VS2017`  [![Build status](https://ci.appveyor.com/api/projects/status/hxhqdk46mjgh8d33?svg=true)](https://ci.appveyor.com/project/chcg/npp-exportplugin)
 - Current Version [![GitHub release](https://img.shields.io/github/release/chcg/NPP_ExportPlugin.svg)](https://github.com/chcg/NPP_ExportPlugin/releases)
 
 Description
@@ -16,7 +16,7 @@ Plugin to export selection or file to clipboard or file in RTF or HTML.
 
 Build
 ------------
-Build with visual studio 2013 or higher
+Build with visual studio 2015 or higher
 
 Changes
 ------------

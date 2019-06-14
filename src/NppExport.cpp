@@ -369,8 +369,7 @@ void fillScintillaData(CurrentScintillaData * csd, int start, int end) {
 	int prevStyle = -1, currentStyle;
 
 	//Mask the styles so any indicators get ignored, else overflow possible
-	int bits = (int)SendMessage(hScintilla, SCI_GETSTYLEBITS, 0, 0);
-	unsigned char mask = 0xFF >> (8-bits);
+	unsigned char mask = 0xFF;
 	for(int i = 0; i < len; i++) {
 		csd->dataBuffer[i*2+1] &= mask;
 	}

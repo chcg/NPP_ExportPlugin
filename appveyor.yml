@@ -4,7 +4,7 @@ image: Visual Studio 2017
 
 environment:
   matrix:
-  - PlatformToolset: v141_xp
+  - PlatformToolset: v141
 
 platform:
     - x64
@@ -27,7 +27,7 @@ install:
 
 
     - if "%PlatformToolset%"=="v140_xp" call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %archi%
-    - if "%PlatformToolset%"=="v141_xp" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %archi%
+    - if "%PlatformToolset%"=="v141" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %archi%
 
 
 build_script:
@@ -40,7 +40,7 @@ after_build:
 
         Push-AppveyorArtifact "vs7project\$env:PLATFORM_INPUT\$env:CONFIGURATION\NppExport.dll" -FileName NppExport.dll
 
-        if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release" -and $env:PLATFORMTOOLSET -eq "v141_xp") {
+        if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release" -and $env:PLATFORMTOOLSET -eq "v141") {
             $ZipFileName = "NppExport_$($env:APPVEYOR_REPO_TAG_NAME)_$($env:APPVEYOR_REPO_TAG_NAME).zip"
             7z a $ZipFileName "$($env:APPVEYOR_BUILD_FOLDER)\vs7project\$env:PLATFORM_INPUT\$env:CONFIGURATION\*.dll"
         }
@@ -59,6 +59,6 @@ deploy:
     force_update: true
     on:
         appveyor_repo_tag: true
-        PlatformToolset: v141_xp
+        PlatformToolset: v141
         configuration: Release
 

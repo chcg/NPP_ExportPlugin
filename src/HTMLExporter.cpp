@@ -61,7 +61,18 @@ bool HTMLExporter::exportData(ExportData * ed) {
 
 	int currentBufferOffset = 0;
 	HGLOBAL hHTMLBuffer = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, totalBytesNeeded);
-	char * clipbuffer = (char *)GlobalLock(hHTMLBuffer);
+	if (hHTMLBuffer == nullptr)
+	{
+		return false;
+	}
+
+	char* clipbuffer = (char*)GlobalLock(hHTMLBuffer);
+	if (clipbuffer == nullptr)
+	{
+		GlobalFree(hHTMLBuffer);
+		return false;
+	}
+
 	clipbuffer[0] = 0;
 
 	//add CF_HTML header if needed, return later to fill in the blanks

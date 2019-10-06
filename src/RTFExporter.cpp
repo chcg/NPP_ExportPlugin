@@ -62,7 +62,18 @@ bool RTFExporter::exportData(ExportData * ed) {
 
 	int currentBufferOffset = 0;
 	HGLOBAL hRTFBuffer = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, totalBytesNeeded);
+	if (hRTFBuffer == nullptr)
+	{
+		return false;
+	}
+
 	char * clipbuffer = (char *)GlobalLock(hRTFBuffer);
+	if (clipbuffer == nullptr)
+	{
+		GlobalFree(hRTFBuffer);
+		return false;
+	}
+
 	clipbuffer[0] = 0;
 
 	int txSize = ed->csd->tabSize * ed->csd->twipsPerSpace;

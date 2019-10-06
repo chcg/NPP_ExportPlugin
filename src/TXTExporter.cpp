@@ -23,7 +23,18 @@ bool TXTExporter::exportData(ExportData * ed) {
 
 	
 	HGLOBAL hTXTBuffer = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, totalBytesNeeded);
+	if (hTXTBuffer == nullptr)
+	{
+		return false;
+	}
+
 	char * clipbuffer = (char *)GlobalLock(hTXTBuffer);
+	if (clipbuffer == nullptr)
+	{
+		GlobalFree(hTXTBuffer);
+		return false;
+	}
+
 	clipbuffer[0] = 0;
 
 	

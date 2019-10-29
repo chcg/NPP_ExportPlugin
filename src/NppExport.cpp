@@ -366,13 +366,8 @@ void fillScintillaData(CurrentScintillaData * csd, int start, int end) {
 
 	csd->nrStyleSwitches = 0, csd->nrUsedStyles = 1;	//Default always
 	csd->totalFontStringLength = 0;
-	int prevStyle = -1, currentStyle;
-
-	//Mask the styles so any indicators get ignored, else overflow possible
-	unsigned char mask = 0xFF;
-	for(int i = 0; i < len; i++) {
-		csd->dataBuffer[i*2+1] &= mask;
-	}
+	int prevStyle = -1;
+	int currentStyle = -1;
 
 	for(int i = 0; i < NRSTYLES; i++) {
 		csd->usedStyles[i] = false;
@@ -394,7 +389,7 @@ void fillScintillaData(CurrentScintillaData * csd, int start, int end) {
 			prevStyle = currentStyle;
 			csd->nrStyleSwitches++;
 		}
-		if (csd->usedStyles[currentStyle] == false) {
+		if (currentStyle >= 0 && currentStyle < NRSTYLES && csd->usedStyles[currentStyle] == false) {
 			csd->nrUsedStyles++;
 			SendMessage(hScintilla, SCI_STYLEGETFONT, currentStyle, (LPARAM) (csd->styles[currentStyle].fontString));
 			csd->totalFontStringLength += (int)strlen((csd->styles[currentStyle].fontString));

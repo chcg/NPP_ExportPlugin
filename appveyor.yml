@@ -1,4 +1,4 @@
-version: 0.2.9.{build}
+version: 0.3.0.{build}
 image: Visual Studio 2017
 
 
@@ -41,7 +41,7 @@ after_build:
         Push-AppveyorArtifact "vs7project\$env:PLATFORM_INPUT\$env:CONFIGURATION\NppExport.dll" -FileName NppExport.dll
 
         if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release" -and $env:PLATFORMTOOLSET -eq "v141") {
-            $ZipFileName = "NppExport_$($env:APPVEYOR_REPO_TAG_NAME)_$($env:APPVEYOR_REPO_TAG_NAME).zip"
+            $ZipFileName = "NppExport_$($env:APPVEYOR_REPO_TAG_NAME)_$($env:PLATFORM_INPUT).zip"
             7z a $ZipFileName "$($env:APPVEYOR_BUILD_FOLDER)\vs7project\$env:PLATFORM_INPUT\$env:CONFIGURATION\*.dll"
         }
 

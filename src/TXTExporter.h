@@ -3,9 +3,7 @@
 #include "Exporter.h"
 
 //size definitions for memory allocation
-#define EXPORT_SIZE_TXT_STATIC		0
-#define EXPORT_SIZE_TXT_STYLE		0
-#define EXPORT_SIZE_TXT_SWITCH		0
+//NONE
 
 struct ExportData;
 class Exporter;

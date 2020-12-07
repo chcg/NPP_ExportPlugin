@@ -190,7 +190,7 @@ void doExportRTF() {
 	TCHAR filename[MAX_PATH];
 	fillScintillaData(&mainCSD, 0 , -1);
 
-	SendMessage(nppData._nppHandle, NPPM_GETFILENAME, 0, (LPARAM) filename);
+	SendMessage(nppData._nppHandle, NPPM_GETFILENAME, (MAX_PATH-1), (LPARAM) filename);
 	lstrcat(filename, TEXT(".rtf"));
 	if (saveFile(filename, MAX_PATH, TEXT("RTF file (*.rtf)\0*.rtf\0All files (*.*)\0*.*\0"))) {
 		//FILE * output = fopen(filename, "wb");
@@ -208,7 +208,7 @@ void doExportHTML() {
 	TCHAR filename[MAX_PATH];
 	fillScintillaData(&mainCSD, 0 , -1);
 
-	SendMessage(nppData._nppHandle, NPPM_GETFILENAME, 0, (LPARAM) filename);
+	SendMessage(nppData._nppHandle, NPPM_GETFILENAME, (MAX_PATH-1), (LPARAM) filename);
 	lstrcat(filename, TEXT(".html"));
 	if (saveFile(filename, MAX_PATH, TEXT("HTML file (*.html)\0*.html\0All files (*.*)\0*.*\0"))) {
 		//FILE * output = fopen(filename, "wb");
@@ -334,7 +334,7 @@ void fillScintillaData(CurrentScintillaData * csd, int start, int end) {
 		if (selStart != selEnd) {
 			start = selStart;
 			end = selEnd;
-			doColourise = false;	//do not colourise on selection, scintilla should have done this by now. Colourise on selection and the state of the lexer doesnt always match
+			doColourise = false;	//do not colourise on selection, scintilla should have done this by now. Colourise on selection and the state of the lexer does not always match
 		} else {
 			end = -1;
 		}
@@ -353,7 +353,7 @@ void fillScintillaData(CurrentScintillaData * csd, int start, int end) {
 	csd->tabSize = tabSize;
 	csd->currentCodePage = codePage;
 
-	csd->dataBuffer = new char[csd->nrChars * 2 + 2];
+	csd->dataBuffer = new char[static_cast<size_t>(csd->nrChars) * 2 + 2];
 
 	TextRange tr;
 	tr.lpstrText = csd->dataBuffer;

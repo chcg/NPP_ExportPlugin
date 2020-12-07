@@ -13,7 +13,7 @@
 
 #include "ExportStructs.h"
 
-#define nbFunc	5
+constexpr auto nbFunc = 5;
 
 //Global variables
 HINSTANCE hDLL;							//Handle of the DLL instance

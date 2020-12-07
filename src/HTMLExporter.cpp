@@ -129,7 +129,7 @@ bool HTMLExporter::exportData(ExportData * ed) {
 		currentStyle = (ed->csd->styles)+i;
 		if (ed->csd->usedStyles[i] == true) {
 			currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, ".sc%d {\r\n", i);
-			if (lstrcmpiA(currentStyle->fontString, defaultStyle->fontString))	//this is forcefully set to ANSI, this part of the plugin doesnt need Unicode
+			if (lstrcmpiA(currentStyle->fontString, defaultStyle->fontString))	//this is forcefully set to ANSI, this part of the plugin does not need Unicode
 				currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "\tfont-family: '%s';\r\n", currentStyle->fontString);
 			if (currentStyle->size != defaultStyle->size)
 				currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "\tfont-size: %0dpt;\r\n", currentStyle->size);
@@ -180,7 +180,7 @@ bool HTMLExporter::exportData(ExportData * ed) {
 	currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "\">");
 
 //-------Dump text to HTML
-	char * tabBuffer = new char[ed->csd->tabSize + 1];
+	char * tabBuffer = new char[static_cast<size_t>(ed->csd->tabSize) + 1];
 	tabBuffer[0] = 0;
 	for(int i = 0; i < ed->csd->tabSize; i++) {
 		strcat(tabBuffer, " ");

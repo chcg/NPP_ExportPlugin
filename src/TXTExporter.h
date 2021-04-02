@@ -14,6 +14,6 @@ class TXTExporter :
 public:
 	TXTExporter(void);
 	~TXTExporter(void);
-	bool exportData(ExportData * ed);
-	TCHAR * getClipboardType();
+	bool exportData(ExportData * ed) override;
+	TCHAR * getClipboardType() override;
 };

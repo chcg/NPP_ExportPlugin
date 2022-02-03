@@ -1063,8 +1063,8 @@ namespace Scintilla {
 #endif
 
 struct Sci_CharacterRange {
-	long cpMin;
-	long cpMax;
+	intptr_t cpMin;
+	intptr_t cpMax;
 };
 
 struct Sci_TextRange {

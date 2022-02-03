@@ -3,6 +3,7 @@ vs7project/Debug/
 vs7project/Release/
 vs7project/ARM64/
 vs7project/win32/
+vs7project/.vs/
 UpgradeLog.htm
 vs7project/NppExport.vcxproj.user
 vs7project/NppExport.exp
@@ -17,3 +18,4 @@ vs7project/NppExport.lib
 *.zip
 *.ipch
 *.sln
+*.bak

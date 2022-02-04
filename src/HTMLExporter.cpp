@@ -19,7 +19,7 @@ bool HTMLExporter::exportData(ExportData * ed) {
 
 	//estimate buffer size needed
 	char * buffer = ed->csd->dataBuffer;
-	int totalBytesNeeded = 1;	//zero terminator
+	size_t totalBytesNeeded = 1;	//zero terminator
 	bool addHeader = ed->isClipboard;	//true if putting data on clipboard
 	
 	totalBytesNeeded += EXPORT_SIZE_HTML_STATIC + EXPORT_SIZE_HTML_STYLE * (ed->csd->nrUsedStyles-1) + ed->csd->totalFontStringLength + EXPORT_SIZE_HTML_SWITCH * ed->csd->nrStyleSwitches;

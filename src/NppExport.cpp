@@ -187,7 +187,7 @@ void destroyWindows() {
 
 //Menu command functions
 void doExportRTF() {
-	TCHAR filename[MAX_PATH];
+	TCHAR filename[MAX_PATH]{};
 	fillScintillaData(&mainCSD, 0 , -1);
 
 	SendMessage(nppData._nppHandle, NPPM_GETFILENAME, (MAX_PATH-1), (LPARAM) filename);
@@ -205,7 +205,7 @@ void doExportRTF() {
 }
 
 void doExportHTML() {
-	TCHAR filename[MAX_PATH];
+	TCHAR filename[MAX_PATH]{};
 	fillScintillaData(&mainCSD, 0 , -1);
 
 	SendMessage(nppData._nppHandle, NPPM_GETFILENAME, (MAX_PATH-1), (LPARAM) filename);
@@ -355,7 +355,7 @@ void fillScintillaData(CurrentScintillaData * csd, int start, int end) {
 
 	csd->dataBuffer = new char[static_cast<size_t>(csd->nrChars) * 2 + 2];
 
-	TextRange tr;
+	Sci_TextRange tr{};
 	tr.lpstrText = csd->dataBuffer;
 	tr.chrg.cpMin = start;
 	tr.chrg.cpMax = end;
@@ -432,7 +432,7 @@ void fillScintillaData(CurrentScintillaData * csd, int start, int end) {
 
 	HGDIOBJ old = SelectObject(scintDC, font);
 
-	SIZE size;
+	SIZE size{};
 	size.cx = 8;	//fallback, 8 pix default
 	GetTextExtentPoint32(scintDC, TEXT(" "), 1, &size);
 	int twips = size.cx * (1440 / pplix);
@@ -455,7 +455,7 @@ void deinitScintillaData(CurrentScintillaData * csd) {
 void exportHTML(bool isClipboard, HANDLE exportFile) {
 
 	HTMLExporter htmlexp;
-	ExportData ed;
+	ExportData ed{};
 
 	ed.isClipboard = isClipboard;
 	ed.csd = &mainCSD;
@@ -486,7 +486,7 @@ void exportHTML(bool isClipboard, HANDLE exportFile) {
 void exportRTF(bool isClipboard, HANDLE exportFile) {
 
 	RTFExporter rtfexp;
-	ExportData ed;
+	ExportData ed{};
 
 	ed.isClipboard = isClipboard;
 	ed.csd = &mainCSD;
@@ -516,7 +516,7 @@ void exportRTF(bool isClipboard, HANDLE exportFile) {
 
 void exportTXT(bool isClipboard, HANDLE exportFile) {
 	TXTExporter txtexp;
-	ExportData ed;
+	ExportData ed{};
 
 	ed.isClipboard = isClipboard;
 	ed.csd = &mainCSD;

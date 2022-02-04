@@ -20,7 +20,7 @@ bool RTFExporter::exportData(ExportData * ed) {
 	char * buffer = ed->csd->dataBuffer;
 	bool isUnicode = (ed->csd->currentCodePage == SC_CP_UTF8);
 
-	int totalBytesNeeded = 1;	//zero terminator
+	size_t totalBytesNeeded = 1;	//zero terminator
 	
 	totalBytesNeeded += EXPORT_SIZE_RTF_STATIC + EXPORT_SIZE_RTF_STYLE * ed->csd->nrUsedStyles + ed->csd->totalFontStringLength + EXPORT_SIZE_RTF_SWITCH * ed->csd->nrStyleSwitches;
 
@@ -78,7 +78,7 @@ bool RTFExporter::exportData(ExportData * ed) {
 
 	int txSize = ed->csd->tabSize * ed->csd->twipsPerSpace;
 
-	currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "{\\rtf1\\ansi\\deff0\\deftab%u\r\n\r\n", txSize);
+	currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "{\\rtf1\\ansi\\deff0\\deftab%u\r\n\r\n", static_cast<unsigned>(txSize));
 	currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "{\\fonttbl\r\n");
 
 	StyleData * currentStyle;
@@ -129,7 +129,7 @@ bool RTFExporter::exportData(ExportData * ed) {
 	int bufferStyle = STYLE_DEFAULT;
 	unsigned char currentChar;
 	StyleData * styles = ed->csd->styles;
-	utf16 unicodeValue;
+	utf16 unicodeValue{};
 
 	//print default style information
 	currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "\\f%d\\fs%d\\cb%d\\cf%d ", styles[STYLE_DEFAULT].fontIndex, styles[STYLE_DEFAULT].size * 2, styles[STYLE_DEFAULT].bgClrIndex, styles[STYLE_DEFAULT].fgClrIndex);

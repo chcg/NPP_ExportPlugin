@@ -195,7 +195,7 @@
       <ImportLibrary>$(OutDir)NppExport.lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <AdditionalDependencies>Gdi32.lib;Comdlg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <CETCompat>true</CETCompat>
+      <CETCompat>false</CETCompat>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -286,7 +286,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <ImportLibrary>$(OutDir)NppExport.lib</ImportLibrary>
       <AdditionalDependencies>Gdi32.lib;Comdlg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <CETCompat>true</CETCompat>
+      <CETCompat>false</CETCompat>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

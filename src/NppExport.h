@@ -17,7 +17,7 @@ constexpr auto nbFunc = 5;
 
 //Global variables
 HINSTANCE hDLL;							//Handle of the DLL instance
-bool initializedPlugin;					//Boolean that used used to track whether the plugin is has been initialized or not
+bool initializedPlugin;					//Boolean that used to track whether the plugin has been initialized or not
 NppData nppData;						//Structure that defines the Notepad++ instance that uses the plugin
 FuncItem funcItem[nbFunc];				//Array that specifies the plugins menu commands
 

@@ -111,8 +111,8 @@ bool HTMLExporter::exportData(ExportData * ed) {
 
 	currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "<style type=\"text/css\">\r\n");
 
-	StyleData * currentStyle, * defaultStyle;
-	defaultStyle = (ed->csd->styles)+STYLE_DEFAULT;
+	StyleData * currentStyle = nullptr;
+	StyleData * defaultStyle = (ed->csd->styles)+STYLE_DEFAULT;
 
 	currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "span {\r\n");
 	currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "\tfont-family: '%s';\r\n", defaultStyle->fontString);

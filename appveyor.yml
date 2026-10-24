@@ -1,10 +1,10 @@
 version: 0.4.0.{build}
-image: Visual Studio 2022
+image: Visual Studio 2026
 
 
 environment:
   matrix:
-  - PlatformToolset: v143
+  - PlatformToolset: v145
 
 platform:
     - x64
@@ -28,6 +28,7 @@ install:
 
     - if "%PlatformToolset%"=="v142" call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" %archi%
     - if "%PlatformToolset%"=="v143" call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" %archi%
+    - if "%PlatformToolset%"=="v145" call "C:\Program Files\Microsoft Visual Studio\2026\Community\VC\Auxiliary\Build\vcvarsall.bat" %archi%
 
 
 build_script:
@@ -40,7 +41,7 @@ after_build:
 
         Push-AppveyorArtifact "vs7project\$env:PLATFORM_INPUT\$env:CONFIGURATION\NppExport.dll" -FileName NppExport.dll
 
-        if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release" -and $env:PLATFORMTOOLSET -eq "v143") {
+        if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release" -and $env:PLATFORMTOOLSET -eq "v145") {
             $ZipFileName = "NppExport_$($env:APPVEYOR_REPO_TAG_NAME)_$($env:PLATFORM_INPUT).zip"
             7z a $ZipFileName "$($env:APPVEYOR_BUILD_FOLDER)\vs7project\$env:PLATFORM_INPUT\$env:CONFIGURATION\*.dll"
         }
@@ -59,6 +60,6 @@ deploy:
     force_update: true
     on:
         appveyor_repo_tag: true
-        PlatformToolset: v143
+        PlatformToolset: v145
         configuration: Release
 

@@ -6,7 +6,7 @@ unofficial repo with sourcecode of https://sourceforge.net/projects/npp-plugins/
 Build Status
 ------------
 
-- AppVeyor `VS2022`  [![Build status](https://ci.appveyor.com/api/projects/status/hxhqdk46mjgh8d33?svg=true)](https://ci.appveyor.com/project/chcg/npp-exportplugin)
+- GH CI `VS2026`  [![Build status](https://github.com/chcg/NPP_ExportPlugin/actions/workflows/CI_build.yml/badge.svg)](https://github.com/chcg/NPP_ExportPlugin/actions/workflows/CI_build.yml)
 - Current Version [![GitHub release](https://img.shields.io/github/release/chcg/NPP_ExportPlugin.svg)](https://github.com/chcg/NPP_ExportPlugin/releases)
 
 Description
@@ -16,7 +16,7 @@ Plugin to export selection or file to clipboard or file in RTF or HTML.
 
 Build
 ------------
-Build with visual studio 2015 or higher
+Build with visual studio 2026 or newer
 
 Changes
 ------------

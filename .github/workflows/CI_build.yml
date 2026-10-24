@@ -1,0 +1,49 @@
+name: CI_build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    env:
+      Projectname: NppExport
+    strategy:
+      fail-fast: false
+      matrix:
+        build_platform: [x64, Win32, Arm64]
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v7
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v3
+
+    - name: MSBuild of plugin dll Debug
+      working-directory: .\vs7project
+      run: |
+           msbuild ${{ env.Projectname }}.vcxproj  /p:configuration=Debug /p:platform="${{ matrix.build_platform }}"
+
+    - name: MSBuild of plugin dll Release
+      working-directory: .\vs7project
+      run: |
+           msbuild ${{ env.Projectname }}.vcxproj  /p:configuration=Release /p:platform="${{ matrix.build_platform }}"
+
+    - uses: jixxed/get-tag@3.0.1
+      id: tagName
+
+    - name: zip artifacts for x64
+      run: 7z a ${{ env.Projectname }}_${{ steps.tagName.outputs.tag }}_${{ matrix.build_platform }}.zip .\vs7project\${{ matrix.build_platform }}\Release\${{ env.Projectname }}.dll
+
+    - name: Archive artifacts for ${{ matrix.build_platform }}
+      uses: actions/upload-artifact@v7
+      with:
+          name: ${{ env.Projectname }}_${{ steps.tagName.outputs.tag }}_${{ matrix.build_platform }}.zip
+          path: ${{ env.Projectname }}_${{ steps.tagName.outputs.tag }}_${{ matrix.build_platform }}.zip
+
+    - name: Create release on tagging
+      uses: softprops/action-gh-release@v3
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+          files: ${{ env.Projectname }}_${{ steps.tagName.outputs.tag }}_${{ matrix.build_platform }}.zip

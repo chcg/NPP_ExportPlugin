@@ -36,6 +36,7 @@ bool HTMLExporter::exportData(ExportData * ed) {
 			case '\r':
 				if (buffer[(i*2)+2] == '\n')
 					break;
+				[[fallthrough]];
 			case '\n':
 				totalBytesNeeded += 2;	//	plain newline
 				break;
@@ -209,6 +210,7 @@ bool HTMLExporter::exportData(ExportData * ed) {
 			case '\r':
 				if (buffer[(i*2)+2] == '\n')
 					break;
+				[[fallthrough]];
 			case '\n':
 				currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "\r\n");
 				nrCharsSinceLinebreak = -1;

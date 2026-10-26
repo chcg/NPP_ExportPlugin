@@ -43,6 +43,7 @@ bool RTFExporter::exportData(ExportData * ed) {
 			case '\r':
 				if (buffer[(i+1)*2] == '\n')
 					break;
+				[[fallthrough]];
 			case '\n':
 				totalBytesNeeded += 6;	// '\par\r\n'
 				break;
@@ -200,6 +201,7 @@ bool RTFExporter::exportData(ExportData * ed) {
 			case '\r':
 				if (buffer[(i*2)+2] == '\n')
 					break;
+				[[fallthrough]];
 			case '\n':
 				currentBufferOffset += sprintf(clipbuffer+currentBufferOffset, "\\par\r\n");
 				break;

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Docking.h"
-#include "dockingResource.h"
 #include "Notepad_plus_msgs.h"
 #include "PluginInterface.h"
 #include <stdio.h>

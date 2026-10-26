@@ -31,31 +31,31 @@ BOOL APIENTRY DllMain(HANDLE hModule,DWORD ul_reason_for_call,LPVOID lpReserved)
 			ZeroMemory(funcItem, sizeof(FuncItem) * nbFunc);
 
 			funcItem[0]._pFunc = &doExportRTF;
-			lstrcpyn(funcItem[0]._itemName, TEXT("&Export to RTF"), 64);			//Copy in the functionname, no more than 64 chars
+			(VOID)lstrcpyn(funcItem[0]._itemName, TEXT("&Export to RTF"), menuItemSize);			//Copy in the functionname, no more than 64 chars
 			funcItem[0]._init2Check = false;								//The menu item is not checked by default, you could set this to true if something should be enabled on startup
 			funcItem[0]._pShKey = new ShortcutKey;							//Give the menu command a ShortcutKey. If you do not wish for any shortcut to be assigned by default,
 			ZeroMemory(funcItem[0]._pShKey, sizeof(ShortcutKey));			//Zero out the ShortcutKey structure, this way the user can always map a shortcutkey manually
 
 			funcItem[1]._pFunc = &doExportHTML;
-			lstrcpyn(funcItem[1]._itemName, TEXT("&Export to HTML"), 64);			//Copy in the functionname, no more than 64 chars
+			(VOID)lstrcpyn(funcItem[1]._itemName, TEXT("&Export to HTML"), menuItemSize);			//Copy in the functionname, no more than 64 chars
 			funcItem[1]._init2Check = false;								//The menu item is not checked by default, you could set this to true if something should be enabled on startup
 			funcItem[1]._pShKey = new ShortcutKey;							//Give the menu command a ShortcutKey. If you do not wish for any shortcut to be assigned by default,
 			ZeroMemory(funcItem[1]._pShKey, sizeof(ShortcutKey));			//Zero out the ShortcutKey structure, this way the user can always map a shortcutkey manually
 
 			funcItem[2]._pFunc = &doClipboardRTF;
-			lstrcpyn(funcItem[2]._itemName, TEXT("&Copy RTF to clipboard"), 64);	//Copy in the functionname, no more than 64 chars
+			(VOID)lstrcpyn(funcItem[2]._itemName, TEXT("&Copy RTF to clipboard"), menuItemSize);	//Copy in the functionname, no more than 64 chars
 			funcItem[2]._init2Check = false;								//The menu item is not checked by default, you could set this to true if something should be enabled on startup
 			funcItem[2]._pShKey = new ShortcutKey;							//Give the menu command a ShortcutKey. If you do not wish for any shortcut to be assigned by default,
 			ZeroMemory(funcItem[2]._pShKey, sizeof(ShortcutKey));			//Zero out the ShortcutKey structure, this way the user can always map a shortcutkey manually
 
 			funcItem[3]._pFunc = &doClipboardHTML;
-			lstrcpyn(funcItem[3]._itemName, TEXT("&Copy HTML to clipboard"), 64);	//Copy in the functionname, no more than 64 chars
+			(VOID)lstrcpyn(funcItem[3]._itemName, TEXT("&Copy HTML to clipboard"), menuItemSize);	//Copy in the functionname, no more than 64 chars
 			funcItem[3]._init2Check = false;								//The menu item is not checked by default, you could set this to true if something should be enabled on startup
 			funcItem[3]._pShKey = new ShortcutKey;							//Give the menu command a ShortcutKey. If you do not wish for any shortcut to be assigned by default,
 			ZeroMemory(funcItem[3]._pShKey, sizeof(ShortcutKey));			//Zero out the ShortcutKey structure, this way the user can always map a shortcutkey manually
 
 			funcItem[4]._pFunc = &doClipboardAll;
-			lstrcpyn(funcItem[4]._itemName, TEXT("&Copy all formats to clipboard"), 64);	//Copy in the functionname, no more than 64 chars
+			(VOID)lstrcpyn(funcItem[4]._itemName, TEXT("&Copy all formats to clipboard"), menuItemSize);	//Copy in the functionname, no more than 64 chars
 			funcItem[4]._init2Check = false;								//The menu item is not checked by default, you could set this to true if something should be enabled on startup
 			funcItem[4]._pShKey = new ShortcutKey;							//Give the menu command a ShortcutKey. If you do not wish for any shortcut to be assigned by default,
 			ZeroMemory(funcItem[4]._pShKey, sizeof(ShortcutKey));			//Zero out the ShortcutKey structure, this way the user can always map a shortcutkey manually
@@ -355,14 +355,14 @@ void fillScintillaData(CurrentScintillaData * csd, int start, int end) {
 
 	csd->dataBuffer = new char[static_cast<size_t>(csd->nrChars) * 2 + 2];
 
-	Sci_TextRange tr{};
+	Sci_TextRangeFull tr{};
 	tr.lpstrText = csd->dataBuffer;
 	tr.chrg.cpMin = start;
 	tr.chrg.cpMax = end;
 
 	if (doColourise)
 		SendMessage(hScintilla, SCI_COLOURISE, start, (LPARAM)end);	//colourise doc so stylers are set
-	SendMessage(hScintilla, SCI_GETSTYLEDTEXT, 0, (LPARAM)&tr);
+	SendMessage(hScintilla, SCI_GETSTYLEDTEXTFULL, 0, (LPARAM)&tr);
 
 	csd->nrStyleSwitches = 0, csd->nrUsedStyles = 1;	//Default always
 	csd->totalFontStringLength = 0;
